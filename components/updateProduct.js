@@ -14,9 +14,9 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 550,
-    height: 650,
-    maxHeight: 650,
+    width: 500,
+    height: 730,
+    maxHeight: 730,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -25,31 +25,40 @@ const style = {
     padding: '40px 30px 20px',
     textAlign: 'center',
 };
-function updateCategory(props) {
+function UpdateProduct(props) {
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [id, setId] = useState();
-    const [file, setFile] = useState();
-    const [name, setName] = useState();
-    const [image, setImage] = useState();
+    const [file, setFile] = useState("");
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [categorie, setCategorie] = useState("");
+    const [price, setPrice] = useState("");
+    const [images, setImages] = useState("");
+
 
     useEffect(() => {
-        setId(props.categories._id);
-        setName(props.categories.name);
-        setImage(props.categories.image);
+        setId(props.articles._id);
+        setTitle(props.articles.title);
+        setDescription(props.articles.description);
+        setCategorie(props.articles.categorie);
+        setPrice(props.articles.price);
+        setImages(props.articles.images);
     }, []);
 
     const handlesave = async (url) => {
-        setImage(url);
+        setImages(url);
         const cat = {
-            id: id,
-            name: name,
-            image: url,
+            title: title,
+            description: description,
+            categorie: categorie,
+            price: price,
+            images: url,
         };
         const res = await (await
-            fetch('http://localhost:3001/api/categories/' + id, {
+            fetch('http://localhost:3001/api/articles/' + id, {
                 method: 'PUT',
                 body: JSON.stringify(cat),
                 headers: {
@@ -71,7 +80,7 @@ function updateCategory(props) {
     const handleUpload = (event) => {
         event.preventDefault();
         if (!file) {
-            const url = image;
+            const url = images;
             handlesave(url);
         }
         else {
@@ -91,6 +100,9 @@ function updateCategory(props) {
             console.log(error);
         }
     }
+    const handleCategorieChange = (selectedCategorie) => {
+        setCategorie(selectedCategorie);
+    };
     return (
         <>
             <span onClick={handleOpen}
@@ -105,16 +117,34 @@ function updateCategory(props) {
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Update Category
+                        Update Product
                     </Typography>
                     <hr />
-
                     <div className="mb-4">
-                        <TextField variant="outlined" label="Name"
-                            value={name} onChange={e => setName(e.target.value)} />
+                        <TextField variant="outlined" label="Title" value={title} onChange={e => setTitle(e.target.value)} />
                     </div>
                     <div className="mb-4">
-                        {!file ? <img src={image} style={{ width: 50, height: 50 }} /> : null}
+                        <TextField variant="outlined" label="Description" value={description} onChange={e => setDescription(e.target.value)} />
+                    </div>
+                    <div className="mb-4">
+                        <select
+                            id="categorie-select"
+                            value={categorie}
+                            onChange={(e) => handleCategorieChange(e.target.value)}
+                            className="px-2 py-1 rounded-lg border border-gray-700 bg-white focus:outline-none focus:ring focus:border-blue-300"
+                        >
+                            <option value="Rings">Rings</option>
+                            <option value="Necklaces">Necklaces</option>
+                            <option value="Bracelets">Bracelets</option>
+                            <option value="Earrings">Earrings</option>
+                            <option value="Glasses">Glasses</option>
+                            <option value="Anklets">Anklets</option>
+                        </select>
+                    </div>
+                    <div className="mb-4">
+                        <TextField variant="outlined" label="Price" value={price} onChange={e => setPrice(e.target.value)} />
+                    </div>
+                    <div className="mb-4">
                         <h6>Selet new image</h6>
                         <center>
                             <div style={{ width: 200, height: 250 }}>
@@ -140,4 +170,4 @@ function updateCategory(props) {
         </>
     )
 }
-export default updateCategory
+export default UpdateProduct

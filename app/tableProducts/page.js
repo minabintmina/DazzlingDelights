@@ -5,9 +5,8 @@ const AffTableProducts = dynamic(() =>
     loading: () => 'Loading...', ssr: false,
 })
 async function getProducts() {
-    const res = await fetch('https://api.escuelajs.co/api/v1/products')
+    const res = await fetch('http://localhost:3001/api/articles')
     const products = await res.json();
-   
     return products;
 }
 const TableProducts = async () => {

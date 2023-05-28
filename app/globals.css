@@ -1,3 +1,8 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -83,6 +88,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  font-family: Arial, sans-serif;
 }
 
 body {
@@ -105,57 +111,196 @@ a {
     color-scheme: dark;
   }
 }
-.banner-item-01 {
-  padding: 300px 0px;
-  background-image: url(/images/products-heading.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-.banner-item-02 {
- padding: 300px 0px;
- background-image: url(/images/slide_01.jpg);
- background-size: cover;
- background-repeat: no-repeat;
- background-position: center center;
-}
-.text-content {
- position: absolute;
- top: 50%;
- transform: translateY(-50%);
- text-align: center;
- width: 100%;
-}
-.text-content h4 {
- color: #f33f3f;
- font-size: 22px;
- text-transform: uppercase;
- font-weight: 700;
- margin-bottom: 15px;
-}
-.text-content h2 {
- color: #fff;
- font-size: 62px;
- text-transform: uppercase;
- letter-spacing: 5px;
-}
-.first-look {
- height: 120vh;
- margin-top: 20vh;
-}
-.first-look-container {
- position: relative;
- display: flex;
- justify-content: center;
- flex-wrap: wrap;
- height: 50%;
- }
-.first-look h2 {
- color: #f58888;
- font-size: 50px;
- text-transform: uppercase; 
- letter-spacing: 5px;
-}
-@tailwind base; 
-@tailwind components; 
-@tailwind utilities;
+
+.banner-item-01 { 
+  padding: 400px 0px; 
+  background-image: url(/images/banner2.jpg); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center center; 
+ } 
+ .banner-item-02 { 
+  padding: 300px 0px; 
+  background-image: url(/images/aboutus.jpg); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center center; 
+ } 
+ .text-content { 
+  position: absolute; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  text-align: center; 
+  width: 100%; 
+ } 
+ .text-content h4 { 
+  color: #fff; 
+  font-size: 25px; 
+  text-transform: uppercase; 
+  font-weight: 500; 
+  margin-bottom: 15px; 
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+ } 
+ .text-content h2 { 
+  color: #cdd926; 
+  font-size: 45px; 
+  text-transform: uppercase; 
+  letter-spacing: 5px; 
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+ } 
+ .first-look { 
+  height: 120vh; 
+  margin-top: 20vh; 
+ } 
+ .first-look-container { 
+  position: relative; 
+  display: flex; 
+  justify-content: center; 
+  flex-wrap: wrap; 
+  height: 50%; 
+  } 
+ .first-look h2 { 
+  color: #f58888; 
+  font-size: 50px; 
+  text-transform: uppercase; 
+  letter-spacing: 5px; 
+  } 
+  .about-us-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    text-align: center;
+  }
+  .quality{
+    padding: 100px 100px; 
+    background-image: url(/images/quality.jpg); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center center; 
+  }
+  .craftsmanship{
+    padding: 100px 100px; 
+    background-image: url(/images/craftsmanship.jpg); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center center; 
+  }
+  .shipping{
+    padding: 100px 100px; 
+    background-image: url(/images/shipping.jpg); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center center; 
+  }
+  .about-us-description {
+    font-size: 18px;
+    margin-bottom: 30px;
+    padding: 50px;
+  }
+  
+  .about-us-features {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  
+  .feature {
+    text-align: center;
+    flex-basis: 30%;
+  }
+  
+  .feature h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #cdd926;
+  }
+  
+  .feature p {
+    font-size: 14px;
+    color: var(--foreground-rgb);
+  }
+  
+  .about-us-call-to-action {
+    font-size: 18px;
+    font-style: italic;
+    text-align: center;
+    color: var(--foreground-rgb);
+    padding: 50px;
+  }
+
+  .product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .section {
+    width: 100%;
+  }
+  
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px;
+  }
+  
+  .col-lg-12 {
+    width: 100%;
+    padding: 15px;
+  }
+  
+  .category-select,
+  .sort-select {
+    margin-bottom: 20px;
+  }
+  
+  .products-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px;
+  }
+  
+  .product-item {
+    width: 100%;
+    padding: 15px;
+  }
+  
+  .product-image {
+    position: relative;
+  }
+  
+  .product-image img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .product-category {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  
+  .product-details {
+    margin-top: 10px;
+  }
+  
+  .product-details a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .product-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  

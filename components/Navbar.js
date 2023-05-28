@@ -6,17 +6,10 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import AllOutIcon from '@mui/icons-material/AllOut';
-import HomeIcon from '@mui/icons-material/Home';
-import ArticleIcon from '@mui/icons-material/Article';
-import FaceIcon from '@mui/icons-material/Face';
-import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { useSession, signOut } from 'next-auth/react';
 import Image from "next/image";
 import ShoppingCart from "./ShoppingCart";
 import { useShoppingCart } from "use-shopping-cart";
-import FireplaceIcon from '@mui/icons-material/Fireplace';
 
 function Navbar() {
     const { data } = useSession();
@@ -36,47 +29,30 @@ function Navbar() {
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar color={onTop ? 'transparent' : 'inherit'}>
+                <AppBar color={onTop ? 'transparent' : 'default'}>
                     <Toolbar>
-
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}
-                            color="default">
-                            E-Shopping
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} color="default">
+                            Dazzling Delights
                         </Typography>
-                        <Button color="inherit" onClick={() => router.push('/')}><HomeIcon
-                            color="secondary" /> Home </Button>
-
-                        <Button color="inherit" onClick={() =>
-                            router.push('/about')}><AllOutIcon color="primary" /> About </Button>
-
-                        <Button color="inherit" onClick={() =>
-                            router.push('/products')}><ArticleIcon style={{ color: 'red' }} /> Products
-                        </Button>
-
-                        <Button color="inherit" onClick={() =>
-                            router.push('/cartProducts')}><ShoppingBasketIcon style={{ color: 'pink' }} />
-                            Shopping Cart </Button>
-                        <Button color="inherit" onClick={() =>
-                            router.push('/flashSales')}><FireplaceIcon style={{ color: 'yellow' }} /> Flash
-                            Sales </Button>
+                        <Button color="inherit" onClick={() => router.push('/')}>Home</Button>
+                        <Button color="inherit" onClick={() => router.push('/about')}> About</Button>
+                        <Button color="inherit" onClick={() => router.push('/products')}> Products </Button>
                         {data?.user ? (<>
-                            <span style={{ marginRight: "15px", color: "orange" }}>USER :
+                            <span style={{ marginRight: "15px", color: "yellow" }}>
                                 {data?.user?.name}</span>
                             {" "}
-                            <Button color="inherit" onClick={() =>
-                                signOut()}><ExitToAppRoundedIcon style={{ color: 'gray' }} /> Logout </Button>
+                            <Button color="inherit" onClick={() => signOut()}> Logout </Button>
                         </>
-                        ) : <Button color="inherit" onClick={() =>
-                            router.push('/login')}><FaceIcon style={{ color: 'green' }} /> Login </Button>
+                        ) : <Button color="inherit" onClick={() => router.push('/login')}> Login </Button>
                         }
-                        <button className="relative" onClick={() => handleCartClick()}>
+                        <button className="inherit" onClick={() => handleCartClick()}>
                             <Image
-                                src="/images/cart.png"
-                                width={40}
-                                height={40}
+                                src="/images/cart.jpg"
+                                width={35}
+                                height={35}
                                 alt="shopping cart icon"
                             />
-                            <div className="rounded-full flex justify-center items-center bg-emerald-500 text-xs text-white absolute w-6 h-5 bottom-6 -right-1">
+                            <div className="rounded-full flex justify-center items-center bg-yellow-500 text-xs text-white absolute w-6 h-5 bottom-6 -right-1">
                                 {cartCount}
                             </div>
                         </button>

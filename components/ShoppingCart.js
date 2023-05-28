@@ -54,7 +54,7 @@ export default function ShoppingCart() {
                         </div>
                         <button
                             onClick={handleClick}
-                            className="bg-emerald-50 hover:bg-emerald-500 hover:text-white transition-colors duration-500 text-emerald-500 py-3 px-5 rounded-md w-100 disabled:bg-slate-300 disabled:cursor-not-allowed disabled:text-white"
+                            className="text-black bg-emerald-50 hover:bg-emerald-500 hover:text-white transition-colors duration-500 text-emerald-500 py-3 px-5 rounded-md w-100 disabled:bg-slate-300 disabled:cursor-not-allowed disabled:text-white"
                             disabled={
                                 (totalPrice && totalPrice < 30) ||
                                     (cartCount && cartCount > 20) ||
@@ -68,7 +68,7 @@ export default function ShoppingCart() {
                     </article>
                 </>
             ) : (
-                <div className="p-5">You have no items in your cart</div>
+                <div className="p-5 text-black">You have no items in your cart</div>
             )}
         </div>
 

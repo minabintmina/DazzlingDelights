@@ -8,16 +8,16 @@ export default function CartItem({ item }) {
         removeItem(item.id);
     };
     return (
-        <div className="flex items-center gap-4 mb-3">
+        <div className="text-black flex items-center gap-4 mb-3">
             <p>
                 <img
-                    src={images[0]}
+                    src={images}
                     width={40} height={40}
                     alt={title}
                 />
             </p>
             <div>
-                {title} <span className="text-xs">({quantity})</span>
+                {title} <span className="text-xs text-black">({quantity})</span>
             </div>
             <div className="ml-auto">{price}$</div>
             <button onClick={() => removeItemFromCart()}

@@ -16,8 +16,8 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 500,
-    height: 500,
-    maxHeight: 500,
+    height: 730,
+    maxHeight: 730,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -27,35 +27,45 @@ const style = {
     textAlign: 'center',
 };
 
-function AjoutCat() {
+function AjoutProd() {
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [file, setFile] = useState("");
-    const [name, setName] = useState("");
-    const [image, setImage] = useState("");
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [categorie, setCategorie] = useState("");
+    const [price, setPrice] = useState("");
+    const [images, setImages] = useState("");
 
     const handlesave = async (url) => {
-        setImage(url);
+        setImages(url);
         const cat = {
-            name: name,
-            image: url,
+            title: title,
+            description: description,
+            categorie: categorie,
+            price: price,
+            images: url,
         };
-        const res = await (await fetch('http://localhost:3001/api/categories', {
-                method: 'POST',
-                body: JSON.stringify(cat),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })).json()
+        const res = await (await fetch('http://localhost:3001/api/articles', {
+            method: 'POST',
+            body: JSON.stringify(cat),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })).json()
+        console.log(res)
         if (res) {
             console.log('successfully inserted!')
 
             handleClose()
             setFile("")
-            setName("");
-            setImage("");
+            setTitle("");
+            setDescription("");
+            setCategorie("");
+            setPrice("");
+            setImages("");
         }
         else {
             console.log(res);
@@ -64,8 +74,8 @@ function AjoutCat() {
     const handleUpload = (event) => {
         event.preventDefault();
 
-            console.log(file[0].file)
-            resultHandleUpload(file[0].file, event);
+        console.log(file[0].file)
+        resultHandleUpload(file[0].file, event);
 
     };
     const resultHandleUpload = async (file) => {
@@ -80,10 +90,13 @@ function AjoutCat() {
             console.log(error);
         }
     }
+    const handleCategorieChange = (selectedCategorie) => {
+        setCategorie(selectedCategorie);
+    };
     return (
         <div>
             <Button type="button" className="text-black bg-white btn btn-primary" onClick={handleOpen}>
-                Click Here To Add A Category
+                Click Here To Add A Product
             </Button>
 
             <Modal
@@ -94,17 +107,37 @@ function AjoutCat() {
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Add Category
+                        Add Product
                     </Typography>
-                    <hr />
-                    <br/>
+                    <br />
 
                     <div className="mb-4">
-                        <TextField variant="outlined" label="Name" onChange={e => setName(e.target.value)} />
+                        <TextField variant="outlined" label="Title" onChange={e => setTitle(e.target.value)} />
+                    </div>
+                    <div className="mb-4">
+                        <TextField variant="outlined" label="Description" onChange={e => setDescription(e.target.value)} />
+                    </div>
+                    <div className="mb-4">
+                        <select
+                            id="category-select"
+                            value={categorie._id}
+                            onChange={(e) => handleCategorieChange(e.target.value)}
+                            className="px-2 py-1 rounded-lg border border-gray-700 bg-white focus:outline-none focus:ring focus:border-blue-300"
+                        >
+                            <option value="646c0bb310e19f6142665d44">Rings</option>
+                            <option value="Necklaces">Necklaces</option>
+                            <option value="Bracelets">Bracelets</option>
+                            <option value="Earrings">Earrings</option>
+                            <option value="Glasses">Glasses</option>
+                            <option value="Anklets">Anklets</option>
+                        </select>
+                    </div>
+                    <div className="mb-4">
+                        <TextField variant="outlined" label="Price" onChange={e => setPrice(e.target.value)} />
                     </div>
                     <div className="mb-4">
                         <h6>Select an image</h6>
-                        <br/>
+                        <br />
                         <center>
                             <div style={{ width: 150, height: 200 }}>
                                 <FilePond
@@ -128,4 +161,4 @@ function AjoutCat() {
         </div>
     )
 }
-export default AjoutCat
+export default AjoutProd
